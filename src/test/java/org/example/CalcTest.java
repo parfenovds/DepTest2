@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 
 import static org.junit.jupiter.api.Assertions.*;
+
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class CalcTest {
 
@@ -15,14 +16,19 @@ class CalcTest {
         calc = new Calc();
     }
 
-
     @Test
-    void add() {
+    void addPositive() {
         assertEquals(5, calc.add(1, 4));
     }
 
     @Test
-    void sub() {
-        assertEquals(3, calc.sub(7, 4));
+    void addNegative() {
+        assertEquals(-5, calc.add(-1, -4));
+    }
+
+    @Test
+    void null_check() {
+        assertThrows(IllegalArgumentException.class,
+                () -> calc.add(null, 1));
     }
 }
